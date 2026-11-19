@@ -63,6 +63,7 @@ import { manuallyVerifyDevice } from "../components/views/dialogs/ManualDeviceKe
 import upgraderoom from "./upgraderoom/upgraderoom";
 import { emoticon } from "./emoticon";
 import { statusCommand } from "./status";
+import Markdown from "../Markdown";
 import { SDKContextClass } from "../contexts/SDKContextClass.ts";
 
 export { CommandCategories, Command };
@@ -73,7 +74,9 @@ export const Commands = [
         args: "<message>",
         description: _td("slash_command|spoiler"),
         runFn: function (cli, roomId, threadId, message = "") {
-            return successSync(ContentHelpers.makeHtmlMessage(message, `<span data-mx-spoiler>${message}</span>`));
+            const md = new Markdown(message);
+            const html = md.isPlainText() ? message : md.toHTML();
+            return successSync(ContentHelpers.makeHtmlMessage(message, `<span data-mx-spoiler>${html}</span>`));
         },
         category: CommandCategories.messages,
     }),

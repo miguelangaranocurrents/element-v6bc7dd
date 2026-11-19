@@ -41,6 +41,11 @@
     display: flex;
 }
 
+/* Let the body shrink so wide content (e.g. code blocks) scrolls instead of pushing the edited marker out */
+.annotated > :first-child {
+    min-width: 0;
+}
+
 .annotatedInline {
     display: inline-flex;
 }

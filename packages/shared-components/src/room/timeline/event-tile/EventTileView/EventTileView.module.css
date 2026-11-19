@@ -125,6 +125,12 @@
     text-align: start;
 }
 
+/* Edit composers render their autocomplete / formatting bar outside their own box */
+.slotBody > :global(.mx_EditMessageComposer),
+.slotBody > :global(.mx_EditWysiwygComposer) {
+    overflow: visible;
+}
+
 .slotAvatar {
     cursor: pointer;
     user-select: none;
